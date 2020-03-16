@@ -3,9 +3,9 @@
 
 import unittest
 import HTMLTestRunner_cn
-from views import my_case
+
 import time
-from views.my_case import is_prime,add,divide,login,getGroupDatas
+from views.my_case import getTableHeader,getItem,divide,login,getTemplateList
 class CaseTest(unittest.TestCase):
     '''乐课网测试'''
     @classmethod
@@ -15,18 +15,13 @@ class CaseTest(unittest.TestCase):
     def setUp(self):
         print('this is setUp')
 
-    def test_is_prime(self):
-        print('is_prime')
-        self.assertTrue(is_prime(5))
-        self.assertFalse(is_prime(8))
-        self.assertFalse(is_prime(0))
-        self.assertFalse(is_prime(1))
-        self.assertFalse(is_prime(-3))
+    def test_getTableHeader(self):
+        print('getTableHeader',getTableHeader('request')[1])
+        self.assertEqual("操作成功",getTableHeader('request')[0])
 
-    def test_add(self):
-        print('add')
-        self.assertEqual(3,add(1,2))
-        self.assertNotEqual(3,add(2,2))
+    def test_getItem(self):
+        print('getItem',getItem('request')[1])
+        self.assertEqual("操作成功",getItem('request')[0])
 
     def test_divide(self):
         print('divide')
@@ -38,10 +33,10 @@ class CaseTest(unittest.TestCase):
         print('login')
         self.assertEqual(200,login('request'))
 
-    def test_getGroupDatas(self):
+    def test_getTemplateList(self):
         '''获取分组信息'''
-        print('getGroupDatas',getGroupDatas('request')[1])
-        self.assertEqual('操作成功',getGroupDatas('request')[0])
+        print('getTemplateList',getTemplateList('request')[1])
+        self.assertEqual('操作成功',getTemplateList('request')[0])
 
     def tearDown(self):
         print('this is tearDown')

@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.header import Header
-from views.find_report import get_report
+from views.find_new_report import get_report
 
 #发送邮件服务器
 smtpserver = 'smtp.qq.com'
@@ -16,7 +16,7 @@ receiver =[ '563092666@qq.com','m15952973055@163.com']
 #邮件主题
 subject = "Python send email test"
 #邮件正文
-msg = MIMEText('<html><h2>上午好</h2><p>那神周爷爷，</p></html>','html','utf-8')
+msg = MIMEText('<html><h2>上午好</h2><p>大吉大利</p></html>','html','utf-8')
 msg['subject'] = Header(subject,'utf-8')
 msg['from'] = sender
 msg['to'] = ';'.join(receiver)

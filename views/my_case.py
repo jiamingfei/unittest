@@ -1,15 +1,27 @@
 import requests
+import json
+from views.get_data_excel import Get_data
+def getTableHeader(request):
+    url =Get_data(a=2,b=1)
+    data = Get_data(a=2,b=2)
+    cookies = {'ticket':"VFhwRlBRPT07TFM4bkxTMG5MeW9uOzMxMzE="}
+    res = requests.get(url=url,data=data,cookies=cookies)
+    response = json.dumps(res.json(),indent=4,ensure_ascii=False)
+#     print(url,data)
+    return [res.json()['message'],response]
+# getTableHeader('requst')
 
-def is_prime(number):
-    if number<0 or number in (0,1):
-        return False
-    for element in range(2,number):
-        if number % element ==0:
-            return False
-    return True
 
-def add(a,b):
-    return a+b
+def getItem(request):
+    url = 'https://webapp.leke.cn/auth/global/evaluation/eva/manage/getItem.htm?schoolId=5855&typeId=182'
+    data = {
+        'schoolId': '5855',
+        'typeId': '182'
+    }
+    cookies = {'ticket': "VFhwRlBRPT07TFM4bkxTMG5MeW9uOzMxMzE="}
+    res = requests.get(url=url, data=data, cookies=cookies)
+    response = json.dumps(res.json(),indent=4,ensure_ascii=False)
+    return [res.json()['message'],response]
 
 def divide(a,b):
     return a/b
@@ -25,15 +37,12 @@ def login(request):
     cookie = requests.utils.dict_from_cookiejar(res.cookies)
     return res.status_code
 
-def getGroupDatas(request):
-    url = 'https://oa.leke.cn/auth/oa/def/getGroupDatas.htm?orgId=6&bizType=2'
+def getTemplateList(request):
+    url = 'https://webapp.leke.cn/auth/global/evaluation/eva/manage/getTemplateList.htm?schoolId=88888888'
     data = {
-        'orgId': '6',
-        'bizType': '2'
+        'schoolId':'88888888'
     }
-    cookies = { 'ticket':"VFdwclBRPT07TEMwbEx5d2xMU2dsOzI5Mjk="}
+    cookies = { 'ticket': "VFhwRlBRPT07TFM4bkxTMG5MeW9uOzMxMzE="}
     res = requests.get(url = url,data=data,cookies=cookies)
-
-    return [(res.json()['message']),res.json()]
-#getGroupDatas('request')
-#print(getGroupDatas('request')[1])
+    response = json.dumps(res.json(), indent=4, ensure_ascii=False)
+    return [res.json()['message'], response]
